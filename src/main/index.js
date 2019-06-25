@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { app, BrowserWindow, BrowserView } from 'electron'
-import ViewManager from './ViewManager'
+import VM from './ViewManager'
 /* eslint-enable */
 const pkg = require('../../package.json')
 const { productName } = pkg.build
@@ -10,7 +10,7 @@ process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
 const isDev = process.env.NODE_ENV === 'development'
 
 let mainWindow = null
-const VM = new ViewManager(mainWindow)
+//const VM = new ViewManager(mainWindow)
 
 if (isDev) {
   // eslint-disable-next-line

@@ -1,8 +1,8 @@
 import { BrowserView } from 'electron'
 
 class ViewManager {
-  constructor(browserWindow) {
-    this.mainWindow = browserWindow
+  constructor() {
+    this.mainWindow = null
     this.views = []
     this.IdLen = 6
     this.currentViewId = null
@@ -24,4 +24,6 @@ class ViewManager {
   }
 }
 
-export default ViewManager
+const VM = new ViewManager()
+
+export default VM

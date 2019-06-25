@@ -67,6 +67,7 @@
   "dependencies": {
     "bulma": "^0.7.5",
     "bulma-pro": "^0.1.7",
+    "events": "^3.0.0",
     "vue": "^2.6.10",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.6",

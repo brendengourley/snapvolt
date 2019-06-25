@@ -4,19 +4,20 @@
       <main-menu/>
     </div>
     <div class="column">
-      <browser-view :snapId="'whatever'" :snapSrc="'https://chat.google.com'"/>
     </div>
   </div>
 </template>
 
 <script>
 import MainMenu from '@/renderer/components/Menu/MainMenu'
-import BrowserView from '@/renderer/components/BrowserView'
+import VM from '@/main/ViewManager'
+import viewEmitter  from '@/main/constants'
+console.log(viewEmitter)
+console.log(VM)
 export default {
   name: 'landing-page',
   components: {
-    MainMenu,
-    BrowserView
+    MainMenu
   }
 }
 </script>
