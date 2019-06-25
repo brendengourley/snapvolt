@@ -1,5 +1,6 @@
 /* eslint-disable */
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, BrowserView } from 'electron'
+import ViewManager from './ViewManager'
 /* eslint-enable */
 const pkg = require('../../package.json')
 const { productName } = pkg.build
@@ -8,7 +9,8 @@ process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
 
 const isDev = process.env.NODE_ENV === 'development'
 
-let mainWindow
+let mainWindow = null
+const VM = new ViewManager(mainWindow)
 
 if (isDev) {
   // eslint-disable-next-line
@@ -43,6 +45,8 @@ function createWindow() {
     show: false,
   })
 
+  VM.updateBrowserWindow(mainWindow)
+
   if (isDev) {
     mainWindow.loadURL('http://localhost:9080')
   } else {
@@ -67,6 +71,8 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  VM.addView(60, 0, 60, 320, 'http://slack.com/signin')
 }
 
 app.on('ready', () => {
@@ -108,4 +114,4 @@ autoUpdater.on('update-downloaded', () => {
 app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
- */
+*/

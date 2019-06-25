@@ -9,23 +9,14 @@ import './assets/fontawesome/css/fontawesome-all.css'
 import App from './App'
 import router from './router'
 import store from './store'
+import 'bulma/css/bulma.css'
 
 Vue.config.productionTip = false
-Vue.config.devtools = true
-
-Vue.use(require('vue-electron'))
 
 /* eslint-disable no-new */
 new Vue({
-  components: {
-    App,
-  },
+  components: { App },
   router,
   store,
-  template: '<App/>',
+  template: '<App/>'
 }).$mount('#app')
-
-/* Enable webpack hot reloading */
-if (module.hot) {
-  module.hot.accept()
-}
