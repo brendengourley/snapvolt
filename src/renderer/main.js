@@ -10,8 +10,13 @@ import App from './App'
 import router from './router'
 import store from './store'
 import 'bulma/css/bulma.css'
+import viewEmitter  from '@/main/constants'
+import VM from '@/main/ViewManager'
 
 Vue.config.productionTip = false
+
+Vue.prototype.$viewEmitter = viewEmitter
+Vue.prototype.$VM = VM
 
 /* eslint-disable no-new */
 new Vue({
