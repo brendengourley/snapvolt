@@ -1,4 +1,5 @@
-
+# SnapVolt
+![SnapVolt](https://github.com/brendengourley/snapvolt/blob/master/src/renderer/assets/logo.svg)
 ### Getting Started
 
 ```bash
