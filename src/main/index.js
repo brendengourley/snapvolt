@@ -72,7 +72,7 @@ function createWindow() {
     mainWindow = null
   })
 
-  VM.addView(60, 0, 60, 320, 'http://slack.com/signin')
+  // VM.addView(60, 0, 60, 320, 'http://slack.com/signin')
 }
 
 app.on('ready', () => {

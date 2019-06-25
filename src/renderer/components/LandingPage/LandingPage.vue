@@ -1,21 +1,27 @@
 <template>
   <div class="columns">
     <div class="column is-narrow">
-      <main-menu />
-      <button @click="button">
-        click me
-      </button>
+      <main-menu @showSnaps="toggleSnapsList" />
     </div>
-    <div class="column" />
+    <div class="column">
+      <supported v-if="showSnaps" />
+    </div>
   </div>
 </template>
 
 <script>
 import MainMenu from '@/renderer/components/Menu/MainMenu'
+import Supported from '@/renderer/components/Menu/SupportedSnaps'
 export default {
   name: 'LandingPage',
   components: {
-    MainMenu
+    MainMenu,
+    Supported
+  },
+  data() {
+    return {
+      showSnaps: false
+    }
   },
   mounted () {
     this.$viewEmitter.on('addView', () => {
@@ -24,10 +30,12 @@ export default {
     })
   },
   methods: {
-    button() {
-      this.$VM.addViewFromRemote(60, 0, 60, 320, 'http://google.com')
-      this.$DB.addSnap('http://google.com')
-      this.$viewEmitter.emit('addView')
+    toggleSnapsList() {
+      // this.$VM.addViewFromRemote(60, 0, 60, 320, 'http://google.com')
+      // this.$DB.addSnap('http://google.com')
+      // this.$viewEmitter.emit('addView')
+      // this.$VM.setActiveView(null)
+      this.showSnaps = !this.showSnaps;
     }
   },
 }

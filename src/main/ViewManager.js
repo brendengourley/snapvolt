@@ -37,6 +37,20 @@ class ViewManager {
     this.currentViewId = view.id
     this.views.push(view)
   }
+
+  setActiveView(id) {
+    const remote = require('electron').remote
+    const { BrowserView } = remote
+    if (id !== null) {
+      const viewToUse = BrowserView.fromId(id)
+      this.mainWindow.setBrowserView(viewToUse)
+      this.currentViewId = id
+    } else {
+      const currentView = BrowserView.fromId(this.currentViewId)
+      this.mainWindow.removeBrowserView(currentView)
+      this.currentViewId = null
+    }
+  }
 }
 
 const VM = new ViewManager()

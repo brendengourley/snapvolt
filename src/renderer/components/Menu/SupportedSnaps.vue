@@ -1,0 +1,35 @@
+<template>
+  <div id="supportedSnaps">
+    <section class="hero is-medium is-dark is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Add a Snap, in a snap!
+          </h1>
+          <h2 class="subtitle">
+            Select a snap from the following list for full compatability.
+          </h2>
+        </div>
+      </div>
+    </section>
+    <div class="columns">
+      <div class="column is-3">
+        <h1>Future home of categories!</h1>
+      </div>
+      <div class="column">
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'SupportedSnaps'
+}
+</script>
+
+<style lang="scss" scoped>
+.columns {
+  padding: 20px;
+}
+</style>

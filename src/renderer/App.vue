@@ -7,6 +7,10 @@
 <script>
   export default {
     name: 'Snapvolt',
+    mounted() {
+      this.$VM.addViewFromRemote(60, 0, 60, 320, 'http://google.com')
+      console.log(this.$VM)
+    },
     beforeDestroy () {
       this.$DB.destroy()
     }
