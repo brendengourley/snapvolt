@@ -1,14 +1,18 @@
 <template>
   <div id="menu">
     <div class="snap-icon">
-      <img class="snap-icon-image" src="@/renderer/assets/icon.svg" alt="electron-vue">
+      <img
+        class="snap-icon-image"
+        src="@/renderer/assets/icon.svg"
+        alt="electron-vue"
+      >
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'main-menu'
+  name: 'MainMenu'
 }
 </script>
 

@@ -1,18 +1,19 @@
 <template>
   <div class="columns">
     <div class="column is-narrow">
-      <main-menu/>
-      <button @click="button"> click me</button>
+      <main-menu />
+      <button @click="button">
+        click me
+      </button>
     </div>
-    <div class="column">
-    </div>
+    <div class="column" />
   </div>
 </template>
 
 <script>
 import MainMenu from '@/renderer/components/Menu/MainMenu'
 export default {
-  name: 'landing-page',
+  name: 'LandingPage',
   components: {
     MainMenu
   },
@@ -25,6 +26,7 @@ export default {
   methods: {
     button() {
       this.$VM.addViewFromRemote(60, 0, 60, 320, 'http://google.com')
+      this.$DB.addSnap('http://google.com')
       this.$viewEmitter.emit('addView')
     }
   },

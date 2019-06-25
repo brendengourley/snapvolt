@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
 <script>
   export default {
-    name: 'snapvolt'
+    name: 'Snapvolt',
+    beforeDestroy () {
+      this.$DB.destroy()
+    }
   }
 </script>
 
