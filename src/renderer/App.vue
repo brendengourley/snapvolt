@@ -8,8 +8,8 @@
   export default {
     name: 'Snapvolt',
     mounted() {
-      this.$VM.addViewFromRemote(60, 0, 60, 320, 'http://google.com')
-      console.log(this.$VM)
+      // this.$VM.addViewFromRemote(60, 0, 60, 320, 'http://google.com')
+      this.$DB.getInstalledSnaps()
     },
     beforeDestroy () {
       this.$DB.destroy()
@@ -18,7 +18,7 @@
 </script>
 
 <style>
-html, body, #app, .columns{
+html, body, #app, .columns {
   height: 100%;
 }
 
