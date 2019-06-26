@@ -57,8 +57,10 @@ class ViewManager {
       }
     } else {
       const currentView = BrowserView.fromId(this.currentViewId)
-      this.mainWindow.removeBrowserView(currentView)
-      this.currentViewId = null
+      if (currentView !== null) {
+        this.mainWindow.removeBrowserView(currentView)
+        this.currentViewId = null
+      }
     }
   }
 }

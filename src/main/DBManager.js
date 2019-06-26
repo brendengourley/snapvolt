@@ -1,10 +1,16 @@
+// eslint-disable-next-line
+const electron = require('electron')
 const sqlite3 = require('sqlite3')
+const path = require('path')
 const fs = require('fs')
-const filepath = './src/main/userdata.db'
+// const filepath = './src/main/userdata.db'
 
 class DBManager {
   constructor() {
     this.installedSnaps = []
+    const userDataPath = (electron.app || electron.remote.app).getPath('userData');
+    const filepath = path.join(userDataPath, 'userdata.db')
+    console.log(filepath)
     if (!fs.existsSync(filepath)){
       fs.closeSync(fs.openSync(filepath, 'w'));
     }

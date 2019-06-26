@@ -10,7 +10,6 @@ process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
 const isDev = process.env.NODE_ENV === 'development'
 
 let mainWindow = null
-//const VM = new ViewManager(mainWindow)
 
 if (isDev) {
   // eslint-disable-next-line

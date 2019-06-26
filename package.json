@@ -1,10 +1,10 @@
 {
-  "author": "Muhammad Ubaid Raza <mubaidr@gmail.com>",
+  "author": "Brenden Gourley <brendengourley@gmail.com>",
   "bugs": {
-    "url": "https://github.com/mubaidr/vue-electron-template/issues"
+    "url": "https://github.com/brendengourley/snapvolt/issues"
   },
   "build": {
-    "appId": "com.mubaidr.vue-electron-template",
+    "appId": "app.snapvolt",
     "asar": true,
     "directories": {
       "output": "build/"
@@ -54,7 +54,7 @@
       "allowToChangeInstallationDirectory": true,
       "oneClick": false
     },
-    "productName": "Vue Electron Template",
+    "productName": "SnapVolt",
     "win": {
       "icon": "_icons/icon.ico",
       "target": [
@@ -120,10 +120,10 @@
   },
   "license": "MIT",
   "main": "./dist/main.js",
-  "name": "vue-electron-template",
+  "name": "SnapVolt",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mubaidr/vue-electron-template.git"
+    "url": "git+https://github.com/brendengourley/snapvolt.git"
   },
   "scripts": {
     "build": "npm run pack && electron-builder",

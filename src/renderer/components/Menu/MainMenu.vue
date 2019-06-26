@@ -8,13 +8,15 @@
       >
     </div>
     <div class="installedApps">
-      <div class="appItem" v-for="snap in installedSnaps" :key="snap.id">
-        <div class="snap-app" @click="openSnap(snap.url, snap.id)">
-          <img
-            class="snap-icon-image"
-            src="@/renderer/assets/icon.svg"
-            alt="electron-vue"
-          >
+      <div id="appsList" v-if="installedSnaps.length >= 1">
+        <div class="appItem" v-for="snap in installedSnaps" :key="snap.id">
+          <div class="snap-app" @click="openSnap(snap.url, snap.id)">
+            <img
+              class="snap-icon-image"
+              src="@/renderer/assets/icon.svg"
+              alt="electron-vue"
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -39,7 +41,7 @@ export default {
   },
   methods: {
     addSnap () {
-      this.$VM.setActiveView(null)
+      // this.$VM.setActiveView(null)
       this.$emit('showSnaps')
     },
     openSnap (url, id) {
