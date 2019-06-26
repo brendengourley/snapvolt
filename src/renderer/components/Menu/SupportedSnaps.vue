@@ -17,6 +17,8 @@
         <h1>Future home of categories!</h1>
       </div>
       <div class="column">
+        <h1>Future Home of supported Snaps!</h1>
+        <button class="button is-dark" @click="addTmp">Add a snap for dev</button>
       </div>
     </div>
   </div>
@@ -24,7 +26,13 @@
 
 <script>
 export default {
-  name: 'SupportedSnaps'
+  name: 'SupportedSnaps',
+  methods: {
+    addTmp () {
+      this.$eventBus.$emit('addTmp')
+      this.$DB.addSnap('http://slack.com/signin', 'Slack')
+    }
+  }
 }
 </script>
 

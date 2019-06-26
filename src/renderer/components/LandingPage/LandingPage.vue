@@ -1,7 +1,7 @@
 <template>
   <div class="columns">
     <div class="column is-narrow">
-      <main-menu @showSnaps="toggleSnapsList" />
+      <main-menu @showSnaps="toggleSnapsList" @hideSnaps="hideSnapsList"/>
     </div>
     <div class="column">
       <supported v-if="showSnaps" />
@@ -30,12 +30,15 @@ export default {
     })
   },
   methods: {
-    toggleSnapsList() {
+    toggleSnapsList () {
       // this.$VM.addViewFromRemote(60, 0, 60, 320, 'http://google.com')
       // this.$DB.addSnap('http://google.com')
       // this.$viewEmitter.emit('addView')
       // this.$VM.setActiveView(null)
       this.showSnaps = !this.showSnaps;
+    },
+    hideSnapsList () {
+      this.showSnaps = false
     }
   },
 }

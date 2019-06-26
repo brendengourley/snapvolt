@@ -7,7 +7,17 @@
         alt="electron-vue"
       >
     </div>
-    <div class="installedApps" />
+    <div class="installedApps">
+      <div class="appItem" v-for="snap in installedSnaps" :key="snap.id">
+        <div class="snap-app" @click="openSnap(snap.url, snap.id)">
+          <img
+            class="snap-icon-image"
+            src="@/renderer/assets/icon.svg"
+            alt="electron-vue"
+          >
+        </div>
+      </div>
+    </div>
     <div class="menu-footer">
       <div class="add-button" @click="addSnap">
         <i class="fas fa-plus" />
@@ -19,10 +29,23 @@
 <script>
 export default {
   name: 'MainMenu',
+  data() {
+    return {
+      installedSnaps: []
+    }
+  },
+  mounted () {
+    this.installedSnaps = this.$DB.installedSnaps
+  },
   methods: {
     addSnap () {
       this.$VM.setActiveView(null)
       this.$emit('showSnaps')
+    },
+    openSnap (url, id) {
+      // this.$VM.addViewFromRemote(60, 0, 60, 320, url)
+      this.$VM.setActiveView(id, url)
+      this.$emit('hideSnaps')
     }
   }
 }

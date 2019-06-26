@@ -21,6 +21,7 @@ Vue.config.productionTip = false
 Vue.prototype.$viewEmitter = viewEmitter
 Vue.prototype.$VM = VM
 Vue.prototype.$DB = DB
+Vue.prototype.$eventBus = new Vue()
 
 /* eslint-disable no-new */
 new Vue({
