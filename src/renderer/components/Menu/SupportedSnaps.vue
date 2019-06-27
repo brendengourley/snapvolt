@@ -18,6 +18,11 @@
       </div>
       <div class="column">
         <h1>Future Home of supported Snaps!</h1>
+        <div class="snapsList" v-for="snap in supportedSnapsList.supported" :key="snap.name">
+          <div class="snap-app">
+            <i :class="snap.icon"/>
+          </div>
+        </div>
         <button class="button is-dark" @click="addTmp">Add a snap for dev</button>
       </div>
     </div>
@@ -27,6 +32,14 @@
 <script>
 export default {
   name: 'SupportedSnaps',
+  data () {
+    return {
+      supportedSnapsList: []
+    }
+  },
+  mounted () {
+    this.supportedSnapsList = this.$SnapManager.json
+  },
   methods: {
     addTmp () {
       this.$eventBus.$emit('addTmp')

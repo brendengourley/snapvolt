@@ -13,14 +13,17 @@ import 'bulma/css/bulma.css'
 import viewEmitter  from '@/main/constants'
 import VM from '@/main/ViewManager'
 import DBManager from '@/main/DBManager'
+import SnapManager from '@/main/SnapManager'
 
 const DB = new DBManager()
+const snapManager = new SnapManager()
 
 Vue.config.productionTip = false
 
 Vue.prototype.$viewEmitter = viewEmitter
 Vue.prototype.$VM = VM
 Vue.prototype.$DB = DB
+Vue.prototype.$SnapManager = snapManager
 Vue.prototype.$eventBus = new Vue()
 
 /* eslint-disable no-new */
