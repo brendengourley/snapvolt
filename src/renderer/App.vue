@@ -21,6 +21,10 @@ html, body, #app, .columns {
   height: 100%;
 }
 
+.columns {
+  margin: 0 !important;
+}
+
 .column {
   padding: 0 !important;
 }

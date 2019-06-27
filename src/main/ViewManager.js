@@ -52,7 +52,7 @@ class ViewManager {
         this.mainWindow.setBrowserView(viewToUse)
         this.currentViewId = id
       } else {
-        if (url !== null) this.addViewFromRemote(60, 0, 60, 320, url)
+        if (url !== null) this.addViewFromRemote(60, 0, 60, 20, url)
       }
     } else {
       const currentView = BrowserView.fromId(this.currentViewId)

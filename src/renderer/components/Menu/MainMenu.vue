@@ -66,10 +66,10 @@ export default {
 #menu {
   height: 100%;
   background-color: $L_SEA_GREEN;
-  padding: 20px 10px 5px 20px;
+  padding: 10px 10px 5px 10px;
 
   .snap-icon {
-    height: 10%;
+    height: 6%;
     border-bottom: 1px solid #e6e6e6;
     padding: 5px 0;
     &-image {
@@ -105,7 +105,7 @@ export default {
     }
   }
   .menu-footer {
-    height: 5%;
+    height: 9%;
     .add-button {
       color: #fff;
       cursor: pointer;
