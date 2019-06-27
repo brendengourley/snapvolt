@@ -16,14 +16,14 @@ class DBManager {
     }
     this.db = new sqlite3.Database(filepath)
     this.db.serialize(() => {
-      this.db.run("CREATE TABLE IF NOT EXISTS snaps (id INTEGER PRIMARY KEY, url TEXT, name TEXT)")
+      this.db.run("CREATE TABLE IF NOT EXISTS snaps (id INTEGER PRIMARY KEY, url TEXT, name TEXT, icon TEXT)")
     })
   }
 
-  addSnap(url, name) {
+  addSnap(url, name, icon) {
     this.db.serialize(() => {
-      const stmt = this.db.prepare("INSERT INTO snaps VALUES (NULL, ?, ?)")
-      stmt.run(url, name)
+      const stmt = this.db.prepare("INSERT INTO snaps VALUES (NULL, ?, ?, ?)")
+      stmt.run(url, name, icon)
       stmt.finalize()
       this.db.get("SELECT MAX(id) AS id FROM snaps", (err, row) => {
         this.installedSnaps.push({
@@ -37,14 +37,15 @@ class DBManager {
 
   getInstalledSnaps() {
     this.db.serialize(() => {
-      this.db.each("SELECT id, url, name FROM snaps", (err, row) => {
+      this.db.each("SELECT id, url, name, icon FROM snaps", (err, row) => {
         if(err) {
           console.error(err)
         }
         const rowObj = {
           "id": row.id,
           "name": row.name,
-          "url": row.url
+          "url": row.url,
+          "icon": row.icon
         }
         this.installedSnaps.push(rowObj)
       })

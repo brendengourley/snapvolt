@@ -11,11 +11,7 @@
       <div id="appsList" v-if="installedSnaps.length >= 1">
         <div class="appItem" v-for="snap in installedSnaps" :key="snap.id">
           <div class="snap-app" @click="openSnap(snap.url, snap.id)">
-            <img
-              class="snap-icon-image"
-              src="@/renderer/assets/icon.svg"
-              alt="electron-vue"
-            >
+            <i :class="snap.icon" />
           </div>
         </div>
       </div>

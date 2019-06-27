@@ -19,11 +19,13 @@
       <div class="column">
         <h1>Future Home of supported Snaps!</h1>
         <div class="snapsList" v-for="snap in supportedSnapsList.supported" :key="snap.name">
-          <div class="snap-app">
-            <i :class="snap.icon"/>
+          <div class="snap-app box" @click="addSnap(snap)">
+            <div class="snap-app-icon">
+              <i :class="snap.icon" />
+            </div>
+            <p class="snap-name">{{ snap.name }}</p>
           </div>
         </div>
-        <button class="button is-dark" @click="addTmp">Add a snap for dev</button>
       </div>
     </div>
   </div>
@@ -41,6 +43,9 @@ export default {
     this.supportedSnapsList = this.$SnapManager.json
   },
   methods: {
+    addSnap (snap) {
+      this.$DB.addSnap(snap.url, snap.name, snap.icon)
+    },
     addTmp () {
       this.$eventBus.$emit('addTmp')
       this.$DB.addSnap('http://slack.com/signin', 'Slack')
@@ -50,7 +55,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$black: hsl(0, 0%, 4%);
 .columns {
   padding: 20px;
+
+  .snap-app {
+    display: flex;
+    width: 40%;
+    padding: 1rem;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      box-shadow: 0 2px 3px rgba($black, 0.3), 0 0 0 1px rgba($black, 0.3)
+    }
+
+    &-icon {
+      display: flex;
+      background-color: #0000FF;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      padding: 5px;
+
+      i {
+        margin: auto;
+        font-size: 15pt;
+        color: white;
+      }
+    }
+
+    .snap-name {
+      margin-left: 10px;
+      line-height: 30px;
+      font-weight: bold;
+      user-select: none;
+    }
+  }
 }
 </style>
