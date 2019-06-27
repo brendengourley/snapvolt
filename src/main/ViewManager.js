@@ -39,7 +39,6 @@ class ViewManager {
   }
 
   setActiveView(id, url = null) {
-    console.log(id, url)
     const remote = require('electron').remote
     const { BrowserView } = remote
     if (id !== null) {

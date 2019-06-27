@@ -8,16 +8,29 @@
       >
     </div>
     <div class="installedApps">
-      <div id="appsList" v-if="installedSnaps.length >= 1">
-        <div class="appItem" v-for="snap in installedSnaps" :key="snap.id">
-          <div class="snap-app" @click="openSnap(snap.url, snap.id)">
+      <div
+        v-if="installedSnaps.length >= 1"
+        id="appsList"
+      >
+        <div
+          v-for="snap in installedSnaps"
+          :key="snap.id"
+          class="appItem"
+        >
+          <div
+            class="snap-app"
+            @click="openSnap(snap.url, snap.id)"
+          >
             <span :class="snap.icon" />
           </div>
         </div>
       </div>
     </div>
     <div class="menu-footer">
-      <div class="add-button" @click="addSnap">
+      <div
+        class="add-button"
+        @click="addSnap"
+      >
         <i class="fas fa-plus" />
       </div>
     </div>
@@ -37,11 +50,10 @@ export default {
   },
   methods: {
     addSnap () {
-      // this.$VM.setActiveView(null)
+      this.$VM.setActiveView(null)
       this.$emit('showSnaps')
     },
     openSnap (url, id) {
-      // this.$VM.addViewFromRemote(60, 0, 60, 320, url)
       this.$VM.setActiveView(id, url)
       this.$emit('hideSnaps')
     }
@@ -72,6 +84,25 @@ export default {
   }
   .installedApps {
     height: 85%;
+    padding: 10px 5px;
+    .appItem {
+      margin: 10px 0;
+      .snap-app {
+        cursor: pointer;
+        display: flex;
+        background-color: $WHITE_SMOKE;
+        box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.36);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        padding: 5px;
+
+        span:before {
+          margin: auto;
+          font-size: 15pt;
+        }
+      }
+    }
   }
   .menu-footer {
     height: 5%;
