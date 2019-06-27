@@ -21,7 +21,7 @@
         <div class="snapsList" v-for="snap in supportedSnapsList.supported" :key="snap.name">
           <div class="snap-app box" @click="addSnap(snap)">
             <div class="snap-app-icon">
-              <i :class="snap.icon" />
+              <span :class="snap.icon" />
             </div>
             <p class="snap-name">{{ snap.name }}</p>
           </div>
@@ -55,6 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../globals.scss';
 $black: hsl(0, 0%, 4%);
 .columns {
   padding: 20px;
@@ -72,16 +73,16 @@ $black: hsl(0, 0%, 4%);
 
     &-icon {
       display: flex;
-      background-color: #0000FF;
+      background-color: $WHITE_SMOKE;
+      box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.36);
       width: 30px;
       height: 30px;
       border-radius: 50%;
       padding: 5px;
 
-      i {
+      span:before {
         margin: auto;
         font-size: 15pt;
-        color: white;
       }
     }
 

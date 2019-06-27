@@ -11,7 +11,7 @@
       <div id="appsList" v-if="installedSnaps.length >= 1">
         <div class="appItem" v-for="snap in installedSnaps" :key="snap.id">
           <div class="snap-app" @click="openSnap(snap.url, snap.id)">
-            <i :class="snap.icon" />
+            <span :class="snap.icon" />
           </div>
         </div>
       </div>
