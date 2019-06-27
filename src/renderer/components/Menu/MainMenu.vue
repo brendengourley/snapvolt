@@ -80,6 +80,10 @@ export default {
       padding: 10px;
       box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.36);
       cursor: pointer;
+
+      &:hover {
+        box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.76);
+      }
     }
   }
   .installedApps {
@@ -96,6 +100,10 @@ export default {
         height: 30px;
         border-radius: 50%;
         padding: 5px;
+
+        &:hover {
+          box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.76);
+        }
 
         span:before {
           margin: auto;
