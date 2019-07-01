@@ -41,7 +41,7 @@ class ViewManager {
           view.webContents.insertCSS(formattedData)
         }
       })
-      // view.webContents.openDevTools()
+      if(process.env.NODE_ENV === 'development')view.webContents.openDevTools()
     })
     this.currentViewId = view.id
     this.views = this.mainWindow.getBrowserViews()
