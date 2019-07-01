@@ -29,7 +29,8 @@ class DBManager {
         this.installedSnaps.push({
           "id": row.id,
           "name": name,
-          "url": url
+          "url": url,
+          "icon": icon
         })
       })
     })

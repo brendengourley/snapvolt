@@ -45,10 +45,6 @@ export default {
   methods: {
     addSnap (snap) {
       this.$DB.addSnap(snap.url, snap.name, snap.icon)
-    },
-    addTmp () {
-      this.$eventBus.$emit('addTmp')
-      this.$DB.addSnap('http://slack.com/signin', 'Slack')
     }
   }
 }
