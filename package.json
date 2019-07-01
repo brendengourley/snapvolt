@@ -70,6 +70,7 @@
     "bulma-pro": "^0.1.7",
     "dotenv": "^8.0.0",
     "events": "^3.0.0",
+    "node-sass": "^4.12.0",
     "sqlite3": "^4.0.9",
     "vue": "^2.6.10",
     "vue-electron": "^1.0.6",
@@ -129,7 +130,8 @@
   },
   "scripts": {
     "build": "npm run pack && electron-builder",
-    "dev": "node ./_scripts/dev-runner.js",
+    "sass": "node-sass ./static/user_styles/scss -o ./static/user_styles/css",
+    "dev": "npm run sass && node ./_scripts/dev-runner.js",
     "lint": "eslint --ext .js,.vue --fix src && prettier --write ./src/**/*.js",
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "webpack --mode=production --env.NODE_ENV=production --hide-modules --config ./_scripts/webpack.main.config.js",

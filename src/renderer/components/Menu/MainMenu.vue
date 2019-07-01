@@ -19,7 +19,7 @@
         >
           <div
             class="snap-app"
-            @click="openSnap(snap.url, snap.id)"
+            @click="openSnap(snap.url, snap.id, snap.slug)"
           >
             <span :class="snap.icon" />
           </div>
@@ -55,8 +55,8 @@ export default {
       }
       this.$emit('showSnaps')
     },
-    openSnap (url, id) {
-      this.$VM.setActiveView(id, url)
+    openSnap (url, id, name) {
+      this.$VM.setActiveView(id, url, name)
       this.$emit('hideSnaps')
     }
   }

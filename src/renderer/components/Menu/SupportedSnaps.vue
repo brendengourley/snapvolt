@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     addSnap (snap) {
-      this.$DB.addSnap(snap.url, snap.name, snap.icon)
+      this.$DB.addSnap(snap.url, snap.name, snap.icon, snap.slug)
     }
   }
 }
