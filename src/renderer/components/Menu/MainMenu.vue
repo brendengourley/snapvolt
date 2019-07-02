@@ -119,6 +119,8 @@ export default {
     .add-button {
       color: #fff;
       cursor: pointer;
+      width: 50%;
+      margin: auto;
     }
   }
 }
