@@ -1,5 +1,5 @@
 <template>
-  <div class="columns">
+  <div class="columns global-body">
     <div class="column is-narrow">
       <main-menu @showSnaps="toggleSnapsList" @hideSnaps="hideSnapsList"/>
     </div>

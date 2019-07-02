@@ -12,18 +12,19 @@
         </div>
       </div>
     </section>
-    <div class="columns">
-      <div class="column is-3">
+    <div class="columns supportedSnaps">
+      <div class="column is-2">
         <h1>Future home of categories!</h1>
       </div>
-      <div class="column">
-        <h1>Future Home of supported Snaps!</h1>
-        <div class="snapsList" v-for="snap in supportedSnapsList.supported" :key="snap.name">
-          <div class="snap-app box" @click="addSnap(snap)">
-            <div class="snap-app-icon">
-              <span :class="snap.icon" />
+      <div class="column supportedList">
+        <div class="columns" v-for="(chunk, chunkKey) in snapChunks" :key="chunkKey">
+          <div class="column is-3" v-for="snap in chunk" :key="snap.name">
+            <div class="snap-app box" @click="addSnap(snap)">
+              <div class="snap-app-icon">
+                <span :class="snap.icon" />
+              </div>
+              <p class="snap-name">{{ snap.name }}</p>
             </div>
-            <p class="snap-name">{{ snap.name }}</p>
           </div>
         </div>
       </div>
@@ -32,6 +33,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
   name: 'SupportedSnaps',
   data () {
@@ -46,6 +48,11 @@ export default {
     addSnap (snap) {
       this.$DB.addSnap(snap.url, snap.name, snap.icon, snap.slug)
     }
+  },
+  computed: {
+    snapChunks () {
+      return _.chunk(this.supportedSnapsList.supported, 4)
+    }
   }
 }
 </script>
@@ -53,13 +60,13 @@ export default {
 <style lang="scss" scoped>
 @import '../../globals.scss';
 $black: hsl(0, 0%, 4%);
-.columns {
+.supportedSnaps {
   padding: 20px;
 
   .snap-app {
     display: flex;
-    width: 40%;
     padding: 1rem;
+    margin: 1rem;
     cursor: pointer;
     user-select: none;
 

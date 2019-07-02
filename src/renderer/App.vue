@@ -17,7 +17,7 @@
 </script>
 
 <style>
-html, body, #app, .columns {
+html, body, #app, .global-body {
   height: 100%;
 }
 
