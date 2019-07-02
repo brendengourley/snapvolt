@@ -1,6 +1,7 @@
 /* eslint-disable */
-import { app, BrowserWindow, BrowserView } from 'electron'
+import { app, BrowserWindow, BrowserView, Menu } from 'electron'
 import VM from './ViewManager'
+import template from './menus/menus'
 /* eslint-enable */
 const pkg = require('../../package.json')
 const { productName } = pkg.build
@@ -43,6 +44,8 @@ function createWindow() {
     },
     show: false,
   })
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
 
   VM.updateBrowserWindow(mainWindow)
 
