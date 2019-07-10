@@ -60,12 +60,19 @@ class ViewManager {
   }
 
   setActiveView(id) {
+    let viewToUse = null
     for (let view of this.views) {
-      if (view.id === id) {
-        view.element.style.display = 'flex'
+      if (id === null) {
+        view.element.style.display = 'none'
       } else {
-        if (view.element.style.display === 'flex') view.element.style.display = "none"
+        if (view.id === id) viewToUse = view
+        else {
+          if (view.element.style.display === 'flex') view.element.style.display = 'none'
+        }
       }
+    }
+    if (viewToUse !== null) {
+      viewToUse.element.style.display = 'flex'
     }
   }
 

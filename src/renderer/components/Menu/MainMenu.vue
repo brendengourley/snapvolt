@@ -50,9 +50,7 @@ export default {
   },
   methods: {
     addSnap () {
-      if(this.$VM.currentViewId !== null) {
-        this.$VM.setActiveView(null)
-      }
+      this.$VM.setActiveView(null)
       this.$emit('showSnaps')
     },
     openSnap (id) {

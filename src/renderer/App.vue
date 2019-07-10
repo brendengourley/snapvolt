@@ -15,7 +15,7 @@
 
 <style>
 html {
-  overflow-y:hidden;
+  overflow-y:hidden !important;
 }
 
 html, body, #app, .global-body {

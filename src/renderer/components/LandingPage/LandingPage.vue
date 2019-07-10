@@ -27,14 +27,9 @@ export default {
     const parent = document.getElementById('mainBody')
     this.$VM.setParent(parent)
     this.$DB.getInstalledSnaps()
-    // this.$VM.addWebViews(this.$DB.installedSnaps, parent)
   },
   methods: {
     toggleSnapsList () {
-      // this.$VM.addViewFromRemote(60, 0, 60, 320, 'http://google.com')
-      // this.$DB.addSnap('http://google.com')
-      // this.$viewEmitter.emit('addView')
-      // this.$VM.setActiveView(null)
       this.showSnaps = !this.showSnaps;
     },
     hideSnapsList () {
