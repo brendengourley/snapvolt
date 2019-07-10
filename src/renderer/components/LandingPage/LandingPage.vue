@@ -3,7 +3,7 @@
     <div class="column is-narrow">
       <main-menu @showSnaps="toggleSnapsList" @hideSnaps="hideSnapsList"/>
     </div>
-    <div class="column">
+    <div class="column" id="mainBody">
       <supported v-if="showSnaps" />
     </div>
   </div>
@@ -24,10 +24,10 @@ export default {
     }
   },
   mounted () {
-    this.$viewEmitter.on('addView', () => {
-      console.log("added a view!")
-      console.log(this.$VM)
-    })
+    const parent = document.getElementById('mainBody')
+    this.$VM.setParent(parent)
+    this.$DB.getInstalledSnaps()
+    // this.$VM.addWebViews(this.$DB.installedSnaps, parent)
   },
   methods: {
     toggleSnapsList () {

@@ -41,6 +41,7 @@ function createWindow() {
       nodeIntegration: true,
       nodeIntegrationInWorker: false,
       webSecurity: false,
+      webviewTag: true,
     },
     show: false,
   })
