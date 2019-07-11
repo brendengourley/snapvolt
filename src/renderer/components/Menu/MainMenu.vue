@@ -1,6 +1,6 @@
 <template>
   <div id="menu">
-    <div class="snap-icon">
+    <div class="snap-icon" @click="showSettings">
       <img
         class="snap-icon-image"
         src="@/renderer/assets/icon.svg"
@@ -49,6 +49,10 @@ export default {
     this.installedSnaps = this.$DB.installedSnaps
   },
   methods: {
+    showSettings () {
+      this.$VM.setActiveView(null)
+      this.$emit('showSettings')
+    },
     addSnap () {
       this.$VM.setActiveView(null)
       this.$emit('showSnaps')

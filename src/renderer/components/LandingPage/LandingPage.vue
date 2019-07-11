@@ -1,10 +1,15 @@
 <template>
   <div class="columns global-body">
     <div class="column is-narrow">
-      <main-menu @showSnaps="toggleSnapsList" @hideSnaps="hideSnapsList"/>
+      <main-menu
+        @showSnaps="toggleSnapsList"
+        @hideSnaps="hideSnapsList"
+        @showSettings="toggleSettings"
+      />
     </div>
-    <div class="column" id="mainBody">
+    <div id="mainBody" class="column">
       <supported v-if="showSnaps" />
+      <settings v-if="showSettings" />
     </div>
   </div>
 </template>
@@ -12,15 +17,18 @@
 <script>
 import MainMenu from '@/renderer/components/Menu/MainMenu'
 import Supported from '@/renderer/components/Menu/SupportedSnaps'
+import Settings from '@/renderer/components/Menu/SettingsMenu'
 export default {
   name: 'LandingPage',
   components: {
     MainMenu,
-    Supported
+    Supported,
+    Settings
   },
   data() {
     return {
-      showSnaps: false
+      showSnaps: false,
+      showSettings: false
     }
   },
   mounted () {
@@ -34,6 +42,9 @@ export default {
     },
     hideSnapsList () {
       this.showSnaps = false
+    },
+    toggleSettings () {
+      this.showSettings = !this.showSettings
     }
   },
 }
