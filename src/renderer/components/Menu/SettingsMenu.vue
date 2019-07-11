@@ -36,6 +36,9 @@
             <div class="snap-app">
               <span :class="snap.icon" />
             </div>
+            <div>
+              <p>{{ snap.name }}</p>
+            </div>
           </div>
           <div class="column">
             <button class="button is-danger">
