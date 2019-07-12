@@ -5,6 +5,7 @@
         @showSnaps="toggleSnapsList"
         @hideSnaps="hideSnapsList"
         @showSettings="toggleSettings"
+        @hideSettings="hideSettings"
       />
     </div>
     <div id="mainBody" class="column">
@@ -45,6 +46,9 @@ export default {
     },
     toggleSettings () {
       this.showSettings = !this.showSettings
+    },
+    hideSettings () {
+      this.showSettings = false
     }
   },
 }

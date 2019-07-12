@@ -28,10 +28,18 @@
     </div>
     <div class="menu-footer">
       <div
-        class="add-button"
+        class="add-button tooltip is-tooltip-right is-tooltip-info"
+        data-tooltip="Add a snap"
         @click="addSnap"
       >
         <i class="fas fa-plus" />
+      </div>
+      <div
+        class="settings-button tooltip is-tooltip-right is-tooltip-info"
+        data-tooltip="Open app settings"
+        @click="showSettings"
+      >
+        <i class="fas fa-cogs" />
       </div>
     </div>
   </div>
@@ -52,14 +60,17 @@ export default {
     showSettings () {
       this.$VM.setActiveView(null)
       this.$emit('showSettings')
+      this.$emit('hideSnaps')
     },
     addSnap () {
       this.$VM.setActiveView(null)
       this.$emit('showSnaps')
+      this.$emit('hideSettings')
     },
     openSnap (id) {
       this.$VM.setActiveView(id)
       this.$emit('hideSnaps')
+      this.$emit('hideSettings')
     }
   }
 }
@@ -69,7 +80,7 @@ export default {
 @import '../../globals.scss';
 #menu {
   height: 100%;
-  background-color: $L_SEA_GREEN;
+  background-color: $D_SLATE_GRAY;
   padding: 10px 10px 5px 10px;
 
   .snap-icon {
@@ -118,11 +129,11 @@ export default {
   }
   .menu-footer {
     height: 9%;
-    .add-button {
+    .add-button, .settings-button {
       color: #fff;
       cursor: pointer;
       width: 50%;
-      margin: auto;
+      margin: 10px auto;
     }
   }
 }

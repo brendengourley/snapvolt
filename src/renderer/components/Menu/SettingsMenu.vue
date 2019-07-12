@@ -11,9 +11,9 @@
     </section>
     <div class="columns snapSettings">
       <div class="column is-2 snapTabButtons">
-        <button class="button is-dark" @click="openGeneralSettings">
+        <!--<button class="button is-dark" @click="openGeneralSettings">
           General
-        </button>
+        </button> -->
         <button class="button is-dark" @click="openAppSettings">
           My Snaps
         </button>
@@ -77,8 +77,8 @@ export default {
   name: 'SettingsMenu',
   data () {
     return {
-      generalSettings: true,
-      appSettings: false,
+      generalSettings: false,
+      appSettings: true,
       installedSnaps: []
     }
   },
