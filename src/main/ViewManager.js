@@ -26,12 +26,25 @@ class View {
           if (!error) {
             let formattedData = data.replace(/\s{2,10}/g, ' ').trim()
             webview.insertCSS(formattedData)
+          } else {
+            console.error('failed to load dark css', error)
           }
         })
       })
     }
     this.element = webview
     this.parent.appendChild(webview)
+  }
+
+  updateWebView() {
+    fs.readFile(process.env.PWD+"/static/user_styles/css/" + this.slug + "_dark.css", "utf-8", (error, data) => {
+      if (!error) {
+        let formattedData = data.replace(/\s{2,10}/g, ' ').trim()
+        this.element.insertCSS(formattedData)
+      } else {
+        console.error('failed to load dark css', error)
+      }
+    })
   }
 }
 
@@ -62,6 +75,15 @@ class ViewManager {
       this.addWebView(this.parent, snap.url, snap.slug, snap.useDarkMode)
     }
     if(this.views.length >= 1) this.setActiveView(this.views[0].id)
+  }
+
+  updateViewDisplayMode(id, useDarkMode) {
+    for (let view of this.views) {
+      if (view.id === id) {
+        view.useDarkMode = useDarkMode
+        view.updateWebView()
+      }
+    }
   }
 
   setActiveView(id, url, slug) {

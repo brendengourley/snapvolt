@@ -50,7 +50,7 @@ export default {
     this.$viewEmitter.on('viewsLoaded', () => {
       setTimeout( () => {
         if (this.$VM.views.length >= 1) {
-          // this.showSplash = false
+          this.showSplash = false
         } else {
           this.noSnaps = true
         }

@@ -20,7 +20,7 @@
           <div
             class="snap-app"
             @click="openSnap(snap.id, snap.url, snap.slug)"
-          >
+            >
             <span :class="snap.icon" />
           </div>
         </div>

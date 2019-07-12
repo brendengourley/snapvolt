@@ -100,8 +100,8 @@ export default {
       this.installedSnaps.splice((id - 1), 1)
     },
     setDarkMode (id, event) {
-      console.log(event.target)
       this.$DB.setDarkMode(id, event.target.checked)
+      if (event.target.checked) this.$VM.updateViewDisplayMode(id, true)
     }
   }
 }

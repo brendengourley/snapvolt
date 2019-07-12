@@ -33,6 +33,7 @@ class DBManager {
           "name": name,
           "url": url,
           "icon": icon,
+          "slug": slug,
           "darkModeAllowed": darkModeAllowed ? 1 : 0,
           "useDarkMode": row.useDarkMode
         })
