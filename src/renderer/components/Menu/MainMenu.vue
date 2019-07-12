@@ -82,6 +82,7 @@ export default {
   height: 100%;
   background-color: $D_SLATE_GRAY;
   padding: 10px 10px 5px 10px;
+  box-shadow: 10px 0px 13px -10px rgba(0,0,0,0.75);
 
   .snap-icon {
     height: 6%;

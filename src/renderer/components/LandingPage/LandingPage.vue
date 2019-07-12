@@ -59,14 +59,14 @@ export default {
   },
   methods: {
     toggleSnapsList () {
-      this.showSnaps = !this.showSnaps;
+      this.showSnaps = true
       this.showSplash = false
     },
     hideSnapsList () {
       this.showSnaps = false
     },
     toggleSettings () {
-      this.showSettings = !this.showSettings
+      this.showSettings = true
       this.showSplash = false
     },
     hideSettings () {
