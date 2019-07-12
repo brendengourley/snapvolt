@@ -17,21 +17,22 @@ class DBManager {
     }
     this.db = new sqlite3.Database(filepath)
     this.db.serialize(() => {
-      this.db.run("CREATE TABLE IF NOT EXISTS snaps (id INTEGER PRIMARY KEY, url TEXT, name TEXT, icon TEXT, slug TEXT)")
+      this.db.run("CREATE TABLE IF NOT EXISTS snaps (id INTEGER PRIMARY KEY, url TEXT, name TEXT, icon TEXT, slug TEXT, darkModeAllowed INTEGER)")
     })
   }
 
-  addSnap(url, name, icon, slug) {
+  addSnap(url, name, icon, slug, darkModeAllowed) {
     this.db.serialize(() => {
-      const stmt = this.db.prepare("INSERT INTO snaps VALUES (NULL, ?, ?, ?, ?)")
-      stmt.run(url, name, icon, slug)
+      const stmt = this.db.prepare("INSERT INTO snaps VALUES (NULL, ?, ?, ?, ?, ?)")
+      stmt.run(url, name, icon, slug, darkModeAllowed)
       stmt.finalize()
       this.db.get("SELECT MAX(id) AS id FROM snaps", (err, row) => {
         this.installedSnaps.push({
           "id": row.id,
           "name": name,
           "url": url,
-          "icon": icon
+          "icon": icon,
+          "darkModeAllowed": darkModeAllowed ? 1 : 0
         })
       })
     })
@@ -47,7 +48,7 @@ class DBManager {
 
   getInstalledSnaps() {
     this.db.serialize(() => {
-      this.db.each("SELECT id, url, name, icon, slug FROM snaps", (err, row) => {
+      this.db.each("SELECT id, url, name, icon, slug, darkModeAllowed FROM snaps", (err, row) => {
         if(err) {
           console.error(err)
         }
@@ -56,7 +57,8 @@ class DBManager {
           "name": row.name,
           "url": row.url,
           "icon": row.icon,
-          "slug": row.slug
+          "slug": row.slug,
+          "darkModeAllowed": row.darkModeAllowed
         }
         this.installedSnaps.push(rowObj)
       }, () => {

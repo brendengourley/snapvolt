@@ -10,7 +10,7 @@
       </div>
     </section>
     <div class="columns snapSettings">
-      <div class="column is-2">
+      <div class="column is-2 snapTabButtons">
         <button class="button is-dark" @click="openGeneralSettings">
           General
         </button>
@@ -31,19 +31,38 @@
         </div>
       </div>
       <div class="column appSettings" v-if="appSettings">
-        <div class="columns box" v-for="snap in installedSnaps" :key="snap.id">
-          <div class="column is-1">
-            <div class="snap-app">
-              <span :class="snap.icon" />
+        <div class="box" v-for="snap in installedSnaps" :key="snap.id">
+          <div class="columns">
+            <div class="column is-3">
+              <div class="snap-app">
+                <span :class="snap.icon" />
+              </div>
+              <div class="snap-app-name">
+                <p>{{ snap.name }}</p>
+              </div>
             </div>
-            <div>
-              <p>{{ snap.name }}</p>
+            <div class="column">
+              <i
+                class="fas fa-trash-alt removeSnap"
+                @click="removeSnap(snap.id)"
+              />
             </div>
           </div>
-          <div class="column">
-            <button class="button is-danger" @click="removeSnap(snap.id)">
-              Remove Snap
-            </button>
+          <div class="is-divider is-settings-custom" />
+          <div class="columns">
+            <div class="field">
+              <input
+                :id="snap.id"
+                type="checkbox"
+                :name="snap.name"
+                class="switch is-rounded"
+                :disabled="snap.darkModeAllowed === 0"
+              >
+              <label :for="snap.id">Dark Mode</label>
+              <p v-if="snap.darkModeAllowed === 0" class="darkmode-warn">
+                Dark Mode is currently not supported for this snap
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -87,9 +106,23 @@ export default {
 .snapSettings {
   padding: 20px;
 
+  .switch {
+    &[type=checkbox]:focus+label {
+      &::before, &:before, &::after, &:after {
+        outline: none !important;
+      }
+    }
+  }
+
+                data-tooltip="snap.darkmodeAllowed === 0 ? Dark Mode is not currently supported for this snap : Enable dark mode"
+  .snapTabButtons {
+    .button {
+      margin: 5px 0;
+    }
+  }
+
   .snap-app {
-    cursor: pointer;
-    display: flex;
+    display: inline-block;
     background-color: $WHITE_SMOKE;
     box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.36);
     width: 30px;
@@ -103,9 +136,34 @@ export default {
     }
   }
 
+  .snap-app-name {
+    display: inline-block;
+    margin-left: 5px;
+  }
+
   .appSettings {
     .box {
       margin: 10px 0 !important;
+    }
+
+  }
+
+  .is-settings-custom {
+    margin: 1rem 0;
+
+    .darkmode-warn {
+      font-size: 10pt;
+      font-weight: bold;
+    }
+  }
+
+  .removeSnap {
+    font-size: 15pt;
+    float: right;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.36);
     }
   }
 }
