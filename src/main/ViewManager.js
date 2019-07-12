@@ -62,7 +62,7 @@ class ViewManager {
     }
   }
 
-  setActiveView(id) {
+  setActiveView(id, url, slug) {
     let viewToUse = null
     for (let view of this.views) {
       if (id === null) {
@@ -76,6 +76,10 @@ class ViewManager {
     }
     if (viewToUse !== null) {
       viewToUse.element.style.display = 'flex'
+    } else if (viewToUse === null && id !== null) {
+      // Add new view created from the current session
+      this.addWebView(this.parent, url, slug, false)
+      this.views[this.views.length - 1].element.style.display = 'flex'
     }
   }
 
