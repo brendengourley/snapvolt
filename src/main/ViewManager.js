@@ -37,14 +37,18 @@ class View {
   }
 
   updateWebView() {
-    fs.readFile(process.env.PWD+"/static/user_styles/css/" + this.slug + "_dark.css", "utf-8", (error, data) => {
-      if (!error) {
-        let formattedData = data.replace(/\s{2,10}/g, ' ').trim()
-        this.element.insertCSS(formattedData)
-      } else {
-        console.error('failed to load dark css', error)
-      }
-    })
+    if(this.useDarkMode) {
+      fs.readFile(process.env.PWD+"/static/user_styles/css/" + this.slug + "_dark.css", "utf-8", (error, data) => {
+        if (!error) {
+          let formattedData = data.replace(/\s{2,10}/g, ' ').trim()
+          this.element.insertCSS(formattedData)
+        } else {
+          console.error('failed to load dark css', error)
+        }
+      })
+    } else {
+      this.element.src = this.src
+    }
   }
 }
 
