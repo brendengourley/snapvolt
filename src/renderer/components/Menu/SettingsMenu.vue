@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="column">
-            <button class="button is-danger">
+            <button class="button is-danger" @click="removeSnap(snap.id)">
               Remove Snap
             </button>
           </div>
@@ -72,6 +72,11 @@ export default {
     openAppSettings () {
       this.appSettings = true
       this.generalSettings = false
+    },
+    removeSnap (id) {
+      this.$DB.removeSnap(id)
+      // Remove from array. But id is 1 based, so set it to be a zero based index
+      this.installedSnaps.splice((id - 1), 1)
     }
   }
 }

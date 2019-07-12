@@ -37,6 +37,14 @@ class DBManager {
     })
   }
 
+  removeSnap(id) {
+    this.db.serialize(() => {
+      const stmt = this.db.prepare("DELETE FROM snaps WHERE id = ?")
+      stmt.run(id)
+      stmt.finalize()
+    })
+  }
+
   getInstalledSnaps() {
     this.db.serialize(() => {
       this.db.each("SELECT id, url, name, icon, slug FROM snaps", (err, row) => {
