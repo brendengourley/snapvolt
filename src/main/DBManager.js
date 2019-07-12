@@ -17,13 +17,13 @@ class DBManager {
     }
     this.db = new sqlite3.Database(filepath)
     this.db.serialize(() => {
-      this.db.run("CREATE TABLE IF NOT EXISTS snaps (id INTEGER PRIMARY KEY, url TEXT, name TEXT, icon TEXT, slug TEXT, darkModeAllowed INTEGER)")
+      this.db.run("CREATE TABLE IF NOT EXISTS snaps (id INTEGER PRIMARY KEY, url TEXT, name TEXT, icon TEXT, slug TEXT, darkModeAllowed INTEGER, useDarkMode INTEGER)")
     })
   }
 
   addSnap(url, name, icon, slug, darkModeAllowed) {
     this.db.serialize(() => {
-      const stmt = this.db.prepare("INSERT INTO snaps VALUES (NULL, ?, ?, ?, ?, ?)")
+      const stmt = this.db.prepare("INSERT INTO snaps VALUES (NULL, ?, ?, ?, ?, ?, 0)")
       stmt.run(url, name, icon, slug, darkModeAllowed)
       stmt.finalize()
       this.db.get("SELECT MAX(id) AS id FROM snaps", (err, row) => {
@@ -32,7 +32,8 @@ class DBManager {
           "name": name,
           "url": url,
           "icon": icon,
-          "darkModeAllowed": darkModeAllowed ? 1 : 0
+          "darkModeAllowed": darkModeAllowed ? 1 : 0,
+          "useDarkMode": row.useDarkMode
         })
       })
     })
@@ -46,9 +47,17 @@ class DBManager {
     })
   }
 
+  setDarkMode(id, toggle) {
+    const useToggle = toggle === true ? 1 : 0
+    this.db.serialize(() => {
+      const stmt = this.db.prepare("UPDATE snaps SET useDarkMode = ? WHERE id = ?")
+      stmt.run(id, useToggle)
+    })
+  }
+
   getInstalledSnaps() {
     this.db.serialize(() => {
-      this.db.each("SELECT id, url, name, icon, slug, darkModeAllowed FROM snaps", (err, row) => {
+      this.db.each("SELECT id, url, name, icon, slug, darkModeAllowed, useDarkMode FROM snaps", (err, row) => {
         if(err) {
           console.error(err)
         }
@@ -58,7 +67,8 @@ class DBManager {
           "url": row.url,
           "icon": row.icon,
           "slug": row.slug,
-          "darkModeAllowed": row.darkModeAllowed
+          "darkModeAllowed": row.darkModeAllowed,
+          "useDarkMode": row.useDarkMode
         }
         this.installedSnaps.push(rowObj)
       }, () => {

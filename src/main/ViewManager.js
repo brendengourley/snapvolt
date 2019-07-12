@@ -4,7 +4,7 @@ const fs = require('fs')
 var id = 1;
 
 class View {
-  constructor(parent, src, slug) {
+  constructor(parent, src, slug, useDarkMode) {
     this.id = id
     id ++
     this.parent = parent
@@ -12,20 +12,23 @@ class View {
     this.src = src
     this.slug = slug
     this.element = null
+    this.useDarkMode = useDarkMode
   }
 
   initWebView() {
     const webview = document.createElement('webview')
     webview.src = this.src
     webview.className = this.className
-    webview.addEventListener('dom-ready', () => {
-      fs.readFile(process.env.PWD+"/static/user_styles/css/" + this.slug + "_dark.css", "utf-8", (error, data) => {
-        if (!error) {
-          let formattedData = data.replace(/\s{2,10}/g, ' ').trim()
-          webview.insertCSS(formattedData)
-        }
+    if (this.useDarkMode) {
+      webview.addEventListener('dom-ready', () => {
+        fs.readFile(process.env.PWD+"/static/user_styles/css/" + this.slug + "_dark.css", "utf-8", (error, data) => {
+          if (!error) {
+            let formattedData = data.replace(/\s{2,10}/g, ' ').trim()
+            webview.insertCSS(formattedData)
+          }
+        })
       })
-    })
+    }
     this.element = webview
     this.parent.appendChild(webview)
   }
@@ -47,15 +50,15 @@ class ViewManager {
     this.mainWindow = browserWindow
   }
 
-  addWebView(parent, url, slug) {
-    const view = new View(parent, url, slug)
+  addWebView(parent, url, slug, useDarkMode) {
+    const view = new View(parent, url, slug, useDarkMode)
     view.initWebView()
     this.views.push(view)
   }
 
   addWebViews(snaps) {
     for (let snap of snaps) {
-      this.addWebView(this.parent, snap.url, snap.slug)
+      this.addWebView(this.parent, snap.url, snap.slug, snap.useDarkMode)
     }
   }
 

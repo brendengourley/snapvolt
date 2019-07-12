@@ -57,6 +57,8 @@
                 :name="snap.name"
                 class="switch is-rounded"
                 :disabled="snap.darkModeAllowed === 0"
+                :checked="snap.useDarkMode === 1"
+                @click="setDarkMode(snap.id, $event)"
               >
               <label :for="snap.id">Dark Mode</label>
               <p v-if="snap.darkModeAllowed === 0" class="darkmode-warn">
@@ -96,6 +98,10 @@ export default {
       this.$DB.removeSnap(id)
       // Remove from array. But id is 1 based, so set it to be a zero based index
       this.installedSnaps.splice((id - 1), 1)
+    },
+    setDarkMode (id, event) {
+      console.log(event.target)
+      this.$DB.setDarkMode(id, event.target.checked)
     }
   }
 }
