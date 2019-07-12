@@ -60,6 +60,7 @@ class ViewManager {
     for (let snap of snaps) {
       this.addWebView(this.parent, snap.url, snap.slug, snap.useDarkMode)
     }
+    this.setActiveView(this.views[0].id)
   }
 
   setActiveView(id, url, slug) {
