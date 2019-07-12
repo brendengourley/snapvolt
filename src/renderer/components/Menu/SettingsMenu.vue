@@ -114,7 +114,6 @@ export default {
     }
   }
 
-                data-tooltip="snap.darkmodeAllowed === 0 ? Dark Mode is not currently supported for this snap : Enable dark mode"
   .snapTabButtons {
     .button {
       margin: 5px 0;

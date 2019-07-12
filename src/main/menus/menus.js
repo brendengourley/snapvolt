@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { app } from 'electron'
 const template = [
   {
