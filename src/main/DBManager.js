@@ -1,4 +1,5 @@
 import VM from './ViewManager'
+import viewEmitter from './EventManager'
 // eslint-disable-next-line
 const electron = require('electron')
 const sqlite3 = require('sqlite3')
@@ -73,6 +74,7 @@ class DBManager {
         this.installedSnaps.push(rowObj)
       }, () => {
         VM.addWebViews(this.installedSnaps)
+        viewEmitter.emit('viewsLoaded')
       })
     })
   }

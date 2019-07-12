@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import { BrowserView } from 'electron'
+// import viewEmitter from 'EventManager'
 const fs = require('fs')
 var id = 1;
 
@@ -60,7 +61,7 @@ class ViewManager {
     for (let snap of snaps) {
       this.addWebView(this.parent, snap.url, snap.slug, snap.useDarkMode)
     }
-    this.setActiveView(this.views[0].id)
+    if(this.views.length >= 1) this.setActiveView(this.views[0].id)
   }
 
   setActiveView(id, url, slug) {
